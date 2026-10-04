@@ -64,3 +64,11 @@ export interface DonationFormValues {
   item: DonationItem | ''
   observacoes: string
 }
+
+export interface Donation {
+  id: string
+  nomeCompleto: string
+  whatsapp: string
+  tipos: string[]
+  observacoes: string | null
+}

@@ -1,11 +1,16 @@
 import axios from 'axios'
-import type { LoginPayload, LoginResponse, Pet, UpdateResult } from '@/types'
+import type { Donation, LoginPayload, LoginResponse, Pet, UpdateResult } from '@/types'
 import { getToken } from '@/lib/auth'
 
 const API_URL = '/api'
 
 function authConfig() {
   return { headers: { authorization: `Bearer ${getToken() ?? ''}` } }
+}
+
+export async function listDonations(): Promise<Donation[]> {
+  const { data } = await axios.get<Donation[]>(`${API_URL}/doacoes`, authConfig())
+  return data
 }
 
 export async function listPets(): Promise<Pet[]> {
