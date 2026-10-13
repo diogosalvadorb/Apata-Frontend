@@ -35,6 +35,7 @@ export interface PetFilters {
   species: Species | ''
   sex: Sex | ''
   size: Size | ''
+  adopted: boolean | ''
 }
 
 export interface LoginPayload {
