@@ -3,7 +3,7 @@
 import { useRef, useState, type ChangeEvent, type FocusEvent } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { PatternFormat } from 'react-number-format'
-import { MdAddPhotoAlternate } from 'react-icons/md'
+import { MdAddPhotoAlternate, MdVaccines} from 'react-icons/md'
 import { IoLogoWhatsapp, IoMdFemale, IoMdMale } from 'react-icons/io'
 import { FaHeart, FaSyringe } from 'react-icons/fa'
 import { GiMedicines } from 'react-icons/gi'
@@ -232,7 +232,7 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
             </label>
             <p className="text-center text-[18px] line-clamp-3">{descricao}.</p>
   
-            {(adotado || vermifugado || castrado) && (
+            {(adotado || vermifugado || castrado || vacinado) && (
                 <div className="flex flex-wrap gap-1 justify-center mt-1">
                     {adotado && (
                         <span className="flex items-center gap-1 text-xs font-bold px-1.5 py-0.5 rounded-full border bg-green-600 border-green-700 text-white">
@@ -247,6 +247,11 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
                     {castrado && (
                         <span className="flex items-center gap-1 text-xs font-bold px-1.5 py-0.5 rounded-full border bg-emerald-100 border-emerald-600 text-emerald-700">
                             <FaSyringe /> Castrado
+                        </span>
+                    )}
+                    {vacinado && (
+                        <span className="flex items-center gap-1 text-xs font-bold px-1.5 py-0.5 rounded-full border bg-blue-100 border-blue-600 text-blue-700">
+                            <MdVaccines /> Vacinado
                         </span>
                     )}
                 </div>
