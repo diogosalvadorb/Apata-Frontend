@@ -5,6 +5,7 @@ export const petFormSchema = z.object({
   especie: z.enum(['cachorro', 'gato']).or(z.literal('')).refine((value) => value !== '', 'Campo obrigatório'),
   porte: z.enum(['pequeno', 'medio', 'grande']).or(z.literal('')).refine((value) => value !== '', 'Campo obrigatório'),
   sexo: z.enum(['macho', 'femea']).or(z.literal('')).refine((value) => value !== '', 'Campo obrigatório'),
+  faixa_etaria: z.enum(['Filhote', 'Adulto', 'Idoso']).or(z.literal('')).refine((value) => value !== '', 'Campo obrigatório'),
   descricao: z.string().min(1, 'Campo obrigatório'),
   contato: z
     .string()
