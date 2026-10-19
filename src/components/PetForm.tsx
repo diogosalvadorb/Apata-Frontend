@@ -23,6 +23,7 @@ const EMPTY_VALUES: PetFormValues = {
   especie: '',
   porte: '',
   sexo: '',
+  faixa_etaria: '',
   descricao: '',
   contato: DEFAULT_PHONE,
   vacinado: false,
@@ -30,7 +31,7 @@ const EMPTY_VALUES: PetFormValues = {
   castrado: false,
 }
 
-// Subcomponente para eliminar a repetição dos três <select> com estrutura idêntica.
+// Subcomponente para eliminar a repetição dos <select> com estrutura idêntica.
 function SelectField({
   label,
   options,
@@ -110,6 +111,7 @@ export default function PetForm() {
     formData.append('especie', values.especie)
     formData.append('porte', values.porte)
     formData.append('sexo', values.sexo)
+    formData.append('faixa_etaria', values.faixa_etaria)
     formData.append('descricao', values.descricao)
     formData.append('vacinado', values.vacinado ? 'true' : 'false')
     formData.append('vermifugado', values.vermifugado ? 'true' : 'false')
@@ -123,6 +125,7 @@ export default function PetForm() {
       resetField('especie', { defaultValue: '' })
       resetField('porte', { defaultValue: '' })
       resetField('sexo', { defaultValue: '' })
+      resetField('faixa_etaria', { defaultValue: '' })
       resetField('descricao', { defaultValue: '' })
       resetField('contato', { defaultValue: values.contato })
       resetPhoto()
@@ -221,6 +224,17 @@ export default function PetForm() {
             ]}
             error={errors.sexo?.message}
             {...register('sexo')}
+          />
+
+          <SelectField
+            label="Faixa Etária"
+            options={[
+              { value: 'Filhote', label: 'Filhote' },
+              { value: 'Adulto', label: 'Adulto' },
+              { value: 'Idoso', label: 'Idoso' },
+            ]}
+            error={errors.faixa_etaria?.message}
+            {...register('faixa_etaria')}
           />
 
           <label className="formlabel"> Sobre:</label>
