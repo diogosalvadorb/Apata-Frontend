@@ -26,6 +26,7 @@ const EMPTY_VALUES: PetFormValues = {
   faixa_etaria: '',
   descricao: '',
   contato: DEFAULT_PHONE,
+  adotado: false,
   vacinado: false,
   vermifugado: false,
   castrado: false,
@@ -116,6 +117,7 @@ export default function PetForm() {
     formData.append('vacinado', values.vacinado ? 'true' : 'false')
     formData.append('vermifugado', values.vermifugado ? 'true' : 'false')
     formData.append('castrado', values.castrado ? 'true' : 'false')
+    formData.append('adotado', values.adotado ? 'true' : 'false')
     if (photoFile.current) formData.append('file', photoFile.current)
     formData.append('contato', values.contato)
 
@@ -127,6 +129,7 @@ export default function PetForm() {
       resetField('sexo', { defaultValue: '' })
       resetField('faixa_etaria', { defaultValue: '' })
       resetField('descricao', { defaultValue: '' })
+      resetField('adotado', { defaultValue: false })
       resetField('contato', { defaultValue: values.contato })
       resetPhoto()
       setStatus('inicio')
@@ -259,6 +262,10 @@ export default function PetForm() {
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" {...register('castrado')} className="w-5 h-5 accent-(--bg-color)" />
               <span className="text-[16px] font-bold">Castrado</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" {...register('adotado')} className="w-5 h-5 accent-(--bg-color)" />
+              <span className="text-[16px] font-bold">Adotado</span>
             </label>
           </div>
 
