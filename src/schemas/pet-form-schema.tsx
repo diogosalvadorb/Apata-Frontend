@@ -12,4 +12,5 @@ export const petFormSchema = z.object({
     .refine((value) => value.replace(/\D/g, '').length === 11, {
       message: 'O número precisa ter 11 dígitos',
     }),
+  adotado: z.boolean()
 })
