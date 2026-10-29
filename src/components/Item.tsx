@@ -37,7 +37,7 @@ function capitalize(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 }
 
 export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }: ItemProps) {
-  const { id, nome, descricao, especie, foto, porte, sexo, contato, adotado, vacinado, vermifugado, castrado } = pet
+  const { id, nome, descricao, especie, foto, porte, sexo, faixa_etaria, contato, adotado, vacinado, vermifugado, castrado } = pet
 
   const [expanded, setExpanded] = useState(false)
   const [editing, setEditing] = useState(false)
@@ -56,7 +56,7 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
     reset,
   } = useForm<PetFormValues>({
     mode: 'onChange',
-    defaultValues: { nome: '', descricao: '', especie: '', porte: '', sexo: '', contato: '',adotado: false,  vacinado: false, vermifugado: false, castrado: false,
+    defaultValues: { nome: '', descricao: '', especie: '', porte: '', sexo: '', faixa_etaria: '', contato: '',adotado: false,  vacinado: false, vermifugado: false, castrado: false,
     },
   })
 
@@ -68,6 +68,7 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
       const formData = new FormData()
       ;(Object.keys(values) as Array<keyof PetFormValues>).forEach((key) => {
         const value = values[key]
+        if (value === undefined) return
         formData.append(key, typeof value === 'boolean' ? String(value) : value)
       })
 
@@ -100,6 +101,7 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
       especie,
       porte,
       sexo,
+      faixa_etaria: faixa_etaria ?? '',
       contato: contato ? digitsOnly(contato) : '',
       adotado: !!adotado,
       vacinado: !!vacinado,
@@ -316,6 +318,17 @@ export default function Item({ pet, admin, onDelete, onUpdate, onStart, onEnd }:
                 <option value="femea">Fêmea</option>
               </select>
               {errors.sexo && <p>Campo obrigatório</p>}
+
+              <label>
+                <strong>Faixa Etária:</strong>
+              </label>
+              <select className="input" {...register('faixa_etaria', { required: true })}>
+                <option value="">Selecione</option>
+                <option value="Filhote">Filhote</option>
+                <option value="Adulto">Adulto</option>
+                <option value="Idoso">Idoso</option>
+              </select>
+              {errors.faixa_etaria && <p>Campo obrigatório</p>}
 
               <label>
                 <strong>Descrição:</strong>
